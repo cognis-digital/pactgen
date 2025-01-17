@@ -10,3 +10,4 @@
 2024-11-14T17:31:41  perf(scoring): handle empty and malformed input
 2024-12-18T12:48:48  chore: one does not simply skip CI
 2025-01-02T19:05:55  ci(parser): add a --quiet mode
+2025-01-17T14:22:02  docs(mcp): handle empty and malformed input
