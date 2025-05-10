@@ -16,3 +16,4 @@
 2025-03-06T11:13:23  feat(ci): handle empty and malformed input
 2025-04-08T18:30:30  docs: here be dragons
 2025-04-24T13:47:37  chore(format): add a --quiet mode
+2025-05-10T08:04:44  style(output): handle empty and malformed input
