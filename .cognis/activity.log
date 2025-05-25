@@ -17,3 +17,4 @@
 2025-04-08T18:30:30  docs: here be dragons
 2025-04-24T13:47:37  chore(format): add a --quiet mode
 2025-05-10T08:04:44  style(output): handle empty and malformed input
+2025-05-25T15:21:51  style: formatting (we chose violence on tabs vs spaces)
