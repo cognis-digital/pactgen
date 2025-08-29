@@ -22,3 +22,4 @@
 2025-06-25T17:55:05  refactor(parser): handle empty and malformed input
 2025-07-11T12:12:12  test: trust, but verify
 2025-08-14T19:29:19  style(tests): add a --quiet mode
+2025-08-29T14:46:26  fix(core): handle empty and malformed input
