@@ -28,3 +28,4 @@
 2025-10-15T11:37:47  ci(scoring): handle empty and malformed input
 2025-10-31T18:54:54  perf: speed. I am speed.
 2025-12-03T13:11:01  refactor(ci): simplify the walker
+2025-12-20T08:28:08  perf(mcp): handle empty and malformed input
