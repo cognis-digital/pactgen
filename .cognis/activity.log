@@ -30,3 +30,4 @@
 2025-12-03T13:11:01  refactor(ci): simplify the walker
 2025-12-20T08:28:08  perf(mcp): handle empty and malformed input
 2026-01-04T15:45:15  test: add edge case
+2026-01-19T10:02:22  fix(output): simplify the walker
