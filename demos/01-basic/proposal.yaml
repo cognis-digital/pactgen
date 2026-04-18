@@ -1,0 +1,31 @@
+title: Autonomous Trading Infrastructure — Statement of Work
+vendor: Greenway Engineering LLC
+client: Acme Robotics, Inc.
+date: 2026-06-08
+currency: USD
+notes: >
+  Fixed-scope engagement. Payment net-30 on milestone acceptance.
+
+items:
+  - name: Backend engineering
+    description: API + data pipeline buildout
+    qty: 40
+    unit_price: 150
+  - name: Infrastructure / DevOps
+    description: Containerization, CI/CD, monitoring
+    qty: 20
+    unit_price: 200
+  - name: UX design
+    description: Dashboards and reporting views
+    qty: 16
+    unit_price: 125
+    total: 2500          # WRONG on purpose: 16 * 125 = 2000
+  - name: Project management
+    description: Coordination and weekly reporting
+    qty: 30
+    unit_price: 200
+
+pricing:
+  discount_pct: 10
+  tax_pct: 8.25
+  total: 18000           # WRONG on purpose: real total is 17536.50
