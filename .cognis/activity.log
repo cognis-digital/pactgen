@@ -37,3 +37,4 @@
 2026-04-10T14:10:50  feat(output): handle empty and malformed input
 2026-04-25T09:27:57  chore: routine maintenance
 2026-05-11T16:44:04  test(core): simplify the walker
+2026-05-27T11:01:11  style(parser): handle empty and malformed input
