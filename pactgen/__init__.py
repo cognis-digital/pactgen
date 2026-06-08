@@ -1,2 +1,11 @@
-"""PACTGEN — Generate branded sales proposals and SOWs from a YAML scope file + pricing table into PDF/HTML, with a deterministic line-item math check."""
-__version__ = "0.1.0"
+"""pactgen — part of the Cognis Neural Suite."""
+try:  # re-export the tool's public API + identity from core
+    from pactgen.core import *  # noqa: F401,F403
+except Exception:  # pragma: no cover
+    pass
+try:
+    from pactgen.core import TOOL_NAME, TOOL_VERSION
+except Exception:  # pragma: no cover
+    TOOL_NAME = "pactgen"
+    TOOL_VERSION = "0.1.0"
+__version__ = TOOL_VERSION
