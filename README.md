@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-pactgen
+pip install "git+https://github.com/cognis-digital/pactgen.git"
 pactgen scan .            # → prioritized findings in seconds
 ```
 
@@ -52,7 +52,7 @@ Proposals diffable in git with reproducible builds — the same scope file alway
 ## Quick start
 
 ```bash
-pip install cognis-pactgen
+pip install "git+https://github.com/cognis-digital/pactgen.git"
 pactgen --version
 pactgen scan .                       # scan current project
 pactgen scan . --format json         # machine-readable

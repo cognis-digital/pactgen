@@ -21,8 +21,6 @@ import sys
 from . import TOOL_NAME, TOOL_VERSION
 from .core import (
     parse_proposal_file,
-    compute_totals,
-    check_math,
     render_html,
     proposal_to_dict,
 )
