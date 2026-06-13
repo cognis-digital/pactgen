@@ -16,9 +16,15 @@
 </div>
 
 ```bash
-pip install cognis-pactgen
+pip install "git+https://github.com/cognis-digital/pactgen.git"
 pactgen scan .            # → prioritized findings in seconds
 ```
+
+<!-- cognis:layman:start -->
+## What is this?
+
+Pactgen turns a simple text file describing your project scope and pricing into a polished, client-ready proposal or statement of work in HTML. You write down your line items, quantities, and prices in a plain YAML file, and pactgen automatically checks the math, catches any totals that do not add up, and produces a formatted document you can send straight to a client. It is built for freelancers, agencies, and sales teams who want proposals that are version-controlled, reproducible, and free of copy-paste pricing mistakes.
+<!-- cognis:layman:end -->
 
 ## Contents
 
@@ -49,10 +55,56 @@ Proposals diffable in git with reproducible builds — the same scope file alway
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Cloud & DevTools  ·  **JTF MERIDIAN division:** ATHENA-PRIME · COGNI-2
+
+**Topics:** `cognis` `devtools` `cloud` `developer-tools` `compliance`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
+<!-- cognis:install:start -->
+## Install
+
+`pactgen` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/pactgen/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/pactgen/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/pactgen.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/pactgen.git"  # uv
+pip install "git+https://github.com/cognis-digital/pactgen.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/pactgen.git
+cd pactgen && pip install .
+```
+
+Then run:
+```sh
+pactgen --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
-pip install cognis-pactgen
+pip install "git+https://github.com/cognis-digital/pactgen.git"
 pactgen --version
 pactgen scan .                       # scan current project
 pactgen scan . --format json         # machine-readable
