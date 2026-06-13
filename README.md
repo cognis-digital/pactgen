@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/pactgen.git"
 pactgen scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+Pactgen turns a simple text file describing your project scope and pricing into a polished, client-ready proposal or statement of work in HTML. You write down your line items, quantities, and prices in a plain YAML file, and pactgen automatically checks the math, catches any totals that do not add up, and produces a formatted document you can send straight to a client. It is built for freelancers, agencies, and sales teams who want proposals that are version-controlled, reproducible, and free of copy-paste pricing mistakes.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why pactgen?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -49,6 +55,42 @@ Proposals diffable in git with reproducible builds — the same scope file alway
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`pactgen` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/pactgen/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/pactgen/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/pactgen.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/pactgen.git"  # uv
+pip install "git+https://github.com/cognis-digital/pactgen.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/pactgen.git
+cd pactgen && pip install .
+```
+
+Then run:
+```sh
+pactgen --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash

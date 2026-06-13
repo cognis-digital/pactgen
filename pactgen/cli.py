@@ -35,12 +35,6 @@ def _build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--version", action="version", version=f"{TOOL_NAME} {TOOL_VERSION}")
-    parser.add_argument(
-        "--format",
-        choices=["table", "json"],
-        default="table",
-        help="Output format for the summary/report (default: table).",
-    )
 
     sub = parser.add_subparsers(dest="command", metavar="COMMAND")
 
@@ -56,6 +50,12 @@ def _build_parser() -> argparse.ArgumentParser:
         "--check",
         action="store_true",
         help="Only validate math; do not render HTML. Exits non-zero on any issue.",
+    )
+    build.add_argument(
+        "--format",
+        choices=["table", "json"],
+        default="table",
+        help="Output format for the summary/report (default: table).",
     )
     return parser
 
