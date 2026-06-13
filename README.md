@@ -20,6 +20,35 @@ pip install cognis-pactgen
 pactgen scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+`pactgen` turns a YAML proposal/SOW spec into a rendered HTML document while
+validating every line-item total. Console script: `pactgen` (or `python -m pactgen`).
+
+1. **Install** (editable from a clone, or as a package):
+   ```bash
+   pip install -e .
+   ```
+2. **Build a proposal** — parse the spec, validate the math, and render HTML:
+   ```bash
+   pactgen build demos/01-basic/proposal.yaml -o proposal.html
+   ```
+3. **Gate the math only** (no HTML) — exits non-zero if any line-item total is wrong:
+   ```bash
+   pactgen build demos/01-basic/proposal.yaml --check
+   ```
+4. **Read the output** — use `--format json` for a machine-readable report you can pipe:
+   ```bash
+   pactgen --format json build proposal.yaml | jq '.totals.grand_total, .issues'
+   ```
+   `issues` is empty when the math checks out; a non-empty list means a mismatch.
+5. **Automate in CI** — fail the build when totals don't reconcile:
+   ```yaml
+   # .github/workflows/proposals.yml
+   - run: pip install -e .
+   - run: pactgen build proposals/*.yaml --check
+   ```
+
 ## Contents
 
 - [Why pactgen?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
