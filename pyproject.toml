@@ -34,3 +34,6 @@ pactgen = "pactgen.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pactgen"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
