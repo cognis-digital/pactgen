@@ -92,7 +92,7 @@ def main(argv=None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
 
-    if args.command != "build":
+    if not getattr(args, "command", None) or args.command != "build":
         parser.print_help()
         return 0
 
@@ -100,6 +100,9 @@ def main(argv=None) -> int:
         proposal = parse_proposal_file(args.spec)
     except FileNotFoundError:
         print(f"error: spec not found: {args.spec}", file=sys.stderr)
+        return 2
+    except PermissionError as exc:
+        print(f"error: {exc}", file=sys.stderr)
         return 2
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
@@ -110,8 +113,12 @@ def main(argv=None) -> int:
 
     if not args.check and args.out:
         html_doc = render_html(proposal)
-        with open(args.out, "w", encoding="utf-8") as fh:
-            fh.write(html_doc)
+        try:
+            with open(args.out, "w", encoding="utf-8") as fh:
+                fh.write(html_doc)
+        except OSError as exc:
+            print(f"error: cannot write output file {args.out!r}: {exc}", file=sys.stderr)
+            return 2
         html_out = args.out
 
     if args.format == "json":

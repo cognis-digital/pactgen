@@ -11,10 +11,14 @@ No third-party imports. Python 3.10+.
 from __future__ import annotations
 
 import html
+import math
 import re
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Any
+
+TOOL_NAME = "pactgen"
+TOOL_VERSION = "0.1.0"
 
 # Money is compared with a small tolerance so 19.99*3 style rounding is tolerated.
 CENT = 0.005
@@ -215,9 +219,11 @@ def _num(v: Any, default: float = 0.0) -> float:
     if isinstance(v, bool):
         return default
     if isinstance(v, (int, float)):
-        return float(v)
+        result = float(v)
+        return default if not math.isfinite(result) else result
     try:
-        return float(str(v).replace("$", "").replace(",", ""))
+        result = float(str(v).replace("$", "").replace(",", ""))
+        return default if not math.isfinite(result) else result
     except ValueError:
         return default
 
@@ -280,8 +286,17 @@ def parse_proposal(text: str) -> Proposal:
 
 
 def parse_proposal_file(path: str) -> Proposal:
-    with open(path, "r", encoding="utf-8") as fh:
-        return parse_proposal(fh.read())
+    if not path or not str(path).strip():
+        raise ValueError("Proposal file path must not be empty.")
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return parse_proposal(fh.read())
+    except IsADirectoryError:
+        raise FileNotFoundError(f"Expected a file but got a directory: {path}")
+    except PermissionError as exc:
+        raise PermissionError(f"Permission denied reading spec: {path}") from exc
+    except UnicodeDecodeError as exc:
+        raise ValueError(f"File is not valid UTF-8 text: {path}") from exc
 
 
 # --------------------------------------------------------------------------- #

@@ -1,6 +1,9 @@
-"""PACTGEN MCP server — exposes scan() as an MCP tool for Cognis.Studio."""
+"""PACTGEN MCP server — exposes build() as an MCP tool for Cognis.Studio."""
 from __future__ import annotations
-from pactgen.core import scan, to_json
+import json
+import sys
+from pactgen.core import parse_proposal_file, proposal_to_dict
+
 
 def serve() -> int:
     """Start an MCP stdio server. Requires the optional 'mcp' extra:
@@ -9,14 +12,18 @@ def serve() -> int:
     try:
         from mcp.server.fastmcp import FastMCP
     except Exception:
-        print("Install the MCP extra: pip install 'cognis-pactgen[mcp]'")
+        print("Install the MCP extra: pip install 'cognis-pactgen[mcp]'", file=sys.stderr)
         return 1
     app = FastMCP("pactgen")
 
     @app.tool()
-    def pactgen_scan(target: str) -> str:
-        """Generate branded sales proposals and SOWs from a YAML scope file + pricing table into PDF/HTML, with a deterministic line-item math check.. Returns JSON findings."""
-        return to_json(scan(target))
+    def pactgen_build(spec_path: str) -> str:
+        """Parse a YAML proposal spec and validate line-item math. Returns JSON findings."""
+        try:
+            proposal = parse_proposal_file(spec_path)
+        except (FileNotFoundError, PermissionError, ValueError) as exc:
+            return json.dumps({"error": str(exc)})
+        return json.dumps(proposal_to_dict(proposal))
 
     app.run()
     return 0
