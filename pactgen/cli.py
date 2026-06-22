@@ -24,8 +24,11 @@ from .core import (
     compute_totals,
     check_math,
     render_html,
+    render_csv,
     proposal_to_dict,
 )
+
+FORMATS = ["table", "json", "csv"]
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -39,9 +42,10 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--version", action="version", version=f"{TOOL_NAME} {TOOL_VERSION}")
     parser.add_argument(
         "--format",
-        choices=["table", "json"],
-        default="table",
-        help="Output format for the summary/report (default: table).",
+        choices=FORMATS,
+        default=None,
+        help="Output format for the summary/report: table (default), json, or csv. "
+        "Accepted before or after the subcommand.",
     )
 
     sub = parser.add_subparsers(dest="command", metavar="COMMAND")
@@ -53,7 +57,18 @@ def _build_parser() -> argparse.ArgumentParser:
         "optionally write an HTML document.",
     )
     build.add_argument("spec", help="Path to the YAML proposal spec.")
-    build.add_argument("-o", "--out", help="Write rendered HTML to this path.")
+    build.add_argument("-o", "--out", help="Write rendered output to this path "
+                       "(HTML by default; CSV when --format csv).")
+    # Also accept --format after the subcommand (the natural place users put it).
+    # Stored under a separate dest so the subparser default does not clobber a
+    # top-level --format; main() merges the two.
+    build.add_argument(
+        "--format",
+        choices=FORMATS,
+        default=None,
+        dest="format_sub",
+        help=argparse.SUPPRESS,
+    )
     build.add_argument(
         "--check",
         action="store_true",
@@ -108,21 +123,26 @@ def main(argv=None) -> int:
         return 2
 
     report = proposal_to_dict(proposal)
-    html_out = None
+    fmt = getattr(args, "format_sub", None) or getattr(args, "format", None) or "table"
+    out_path = None
 
     if not args.check and args.out:
-        html_doc = render_html(proposal)
-        with open(args.out, "w", encoding="utf-8") as fh:
-            fh.write(html_doc)
-        html_out = args.out
+        if fmt == "csv":
+            doc = render_csv(proposal)
+        else:
+            doc = render_html(proposal)
+        with open(args.out, "w", encoding="utf-8", newline="") as fh:
+            fh.write(doc)
+        out_path = args.out
 
-    if args.format == "json":
+    if fmt == "json":
         print(json.dumps(report, indent=2))
+    elif fmt == "csv":
+        # CSV goes to stdout when no -o file was given.
+        if not args.out:
+            sys.stdout.write(render_csv(proposal))
     else:
-        _print_table(report, html_out)
-        if not args.check and not args.out:
-            # Convenience: emit HTML to stdout if no destination and not check-only.
-            pass
+        _print_table(report, out_path)
 
     # CI gate: any math issue is a failure.
     return 1 if report["issues"] else 0

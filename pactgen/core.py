@@ -10,7 +10,10 @@ No third-party imports. Python 3.10+.
 
 from __future__ import annotations
 
+import csv
 import html
+import io
+import os
 import re
 from dataclasses import dataclass, field
 from datetime import date
@@ -18,6 +21,28 @@ from typing import Any
 
 # Money is compared with a small tolerance so 19.99*3 style rounding is tolerated.
 CENT = 0.005
+
+TOOL_NAME = "pactgen"
+
+
+def _read_version() -> str:
+    """Resolve the tool version from the repo VERSION file, with a safe default."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for cand in (
+        os.path.join(here, "..", "VERSION"),
+        os.path.join(here, "VERSION"),
+    ):
+        try:
+            with open(cand, "r", encoding="utf-8") as fh:
+                v = fh.read().strip()
+            if v:
+                return v
+        except OSError:
+            continue
+    return "0.3.8"
+
+
+TOOL_VERSION = _read_version()
 
 
 # --------------------------------------------------------------------------- #
@@ -371,6 +396,42 @@ def proposal_to_dict(p: Proposal) -> dict:
         "issues": [iss.to_dict() for iss in issues],
         "ok": len(issues) == 0,
     }
+
+
+def render_csv(p: Proposal) -> str:
+    """Render the proposal line items + totals as CSV.
+
+    Useful for importing into a spreadsheet, an ERP, or an accounting tool.
+    One row per line item, then blank-keyed summary rows for the totals so the
+    whole document round-trips into a single sheet.
+    """
+    totals = compute_totals(p)
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(["section", "name", "description", "qty", "unit_price", "total", "currency"])
+    for i in p.items:
+        w.writerow([
+            "item",
+            i.name,
+            i.description,
+            f"{i.qty:g}",
+            f"{i.unit_price:.2f}",
+            f"{i.computed_total:.2f}",
+            p.currency,
+        ])
+    w.writerow(["summary", "Subtotal", "", "", "", f"{totals['subtotal']:.2f}", p.currency])
+    if p.discount_pct:
+        w.writerow([
+            "summary", f"Discount ({p.discount_pct:g}%)", "", "", "",
+            f"{-totals['discount']:.2f}", p.currency,
+        ])
+    if p.tax_pct:
+        w.writerow([
+            "summary", f"Tax ({p.tax_pct:g}%)", "", "", "",
+            f"{totals['tax']:.2f}", p.currency,
+        ])
+    w.writerow(["summary", "Grand Total", "", "", "", f"{totals['grand_total']:.2f}", p.currency])
+    return buf.getvalue()
 
 
 def _money(v: float, currency: str) -> str:

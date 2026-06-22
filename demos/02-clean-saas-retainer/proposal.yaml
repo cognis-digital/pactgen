@@ -1,0 +1,30 @@
+title: Managed SaaS Platform — Monthly Retainer
+vendor: Northwind Cloud Services LLC
+client: Brightline Logistics, Inc.
+date: 2026-07-01
+currency: USD
+notes: >
+  Month-to-month managed service. Invoiced on the 1st, net-15.
+  Includes 24x7 on-call and a 99.9% uptime SLA.
+
+items:
+  - name: Platform hosting & infrastructure
+    description: Dedicated cluster, autoscaling, backups
+    qty: 1
+    unit_price: 4200
+    total: 4200
+  - name: Application support (retainer hours)
+    description: Bug fixes, minor enhancements, monitoring
+    qty: 40
+    unit_price: 165
+    total: 6600
+  - name: On-call / incident response
+    description: 24x7 paging tier, < 15 min ack
+    qty: 1
+    unit_price: 1500
+    total: 1500
+
+pricing:
+  discount_pct: 5
+  tax_pct: 0
+  total: 11685

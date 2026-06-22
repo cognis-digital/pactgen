@@ -1,0 +1,40 @@
+title: Office Network Refresh — Hardware & Install
+vendor: Beacon IT Integrators LLC
+client: Polestar Architecture PLLC
+date: 2026-06-22
+currency: USD
+notes: >
+  Mixed hardware + labor bill of materials. Export to CSV to drop straight into
+  the client's procurement spreadsheet and the vendor's PO system.
+
+items:
+  - name: Wi-Fi 6E access points
+    description: Ceiling-mount, PoE
+    qty: 12
+    unit_price: 329.00
+    total: 3948.00
+  - name: 48-port PoE switch
+    description: L3 managed, stacked pair
+    qty: 2
+    unit_price: 1899.00
+    total: 3798.00
+  - name: Firewall appliance
+    description: NGFW with 3-yr support
+    qty: 1
+    unit_price: 2450.00
+    total: 2450.00
+  - name: Structured cabling
+    description: Cat6A drops, terminated & tested
+    qty: 60
+    unit_price: 85.00
+    total: 5100.00
+  - name: Installation labor
+    description: Mount, configure, cutover
+    qty: 48
+    unit_price: 125.00
+    total: 6000.00
+
+pricing:
+  discount_pct: 0
+  tax_pct: 8
+  total: 22999.68

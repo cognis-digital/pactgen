@@ -1,0 +1,24 @@
+title: Logo & Brand Kit — Quick Quote
+date: 2026-06-21
+currency: GBP
+vendor:
+  name: Pixel & Ink Studio
+client:
+  name: Thornbury Coffee Roasters Ltd
+notes: One-off creative package. 50% deposit to book.
+
+# Uses alias field names: item/quantity/rate instead of name/qty/unit_price,
+# and nested vendor/client maps. PACTGEN accepts all of these.
+items:
+  - item: Logo design
+    quantity: 1
+    rate: 900
+  - item: Brand guidelines
+    quantity: 1
+    rate: 450
+  - item: Social media templates
+    quantity: 8
+    rate: 35
+
+pricing:
+  tax_pct: 20

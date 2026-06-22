@@ -1,0 +1,35 @@
+title: Website Redesign & Headless CMS Migration — Fixed Bid
+vendor: Atelier Drei GmbH
+client: Café Mauerblume GmbH
+date: 2026-06-15
+currency: EUR
+notes: >
+  Festpreis. Two milestones (design sign-off, launch). 50% on start, 50% on launch.
+  VAT (USt.) 19% per German invoicing rules.
+
+items:
+  - name: Discovery & UX
+    description: Stakeholder interviews, sitemap, wireframes
+    qty: 1
+    unit_price: 3800
+    total: 3800
+  - name: Visual design
+    description: Brand-aligned design system, 6 key templates
+    qty: 6
+    unit_price: 650
+    total: 3900
+  - name: Frontend build
+    description: Headless frontend, responsive, a11y AA
+    qty: 1
+    unit_price: 7200
+    total: 7200
+  - name: CMS migration
+    description: Content import, redirects, editor training
+    qty: 1
+    unit_price: 2600
+    total: 2600
+
+pricing:
+  discount_pct: 0
+  tax_pct: 19
+  total: 20825

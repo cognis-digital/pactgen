@@ -1,0 +1,18 @@
+title: Acme Renewal — Annual Support
+vendor: Northwind Cloud Services LLC
+client: Acme Robotics, Inc.
+date: 2026-07-01
+currency: USD
+items:
+  - name: Annual support plan
+    qty: 1
+    unit_price: 18000
+    total: 18000
+  - name: Priority SLA add-on
+    qty: 1
+    unit_price: 4000
+    total: 4000
+pricing:
+  discount_pct: 10
+  tax_pct: 0
+  total: 19800

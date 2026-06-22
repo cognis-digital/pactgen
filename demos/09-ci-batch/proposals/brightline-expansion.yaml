@@ -1,0 +1,21 @@
+title: Brightline Expansion — Additional Region
+vendor: Northwind Cloud Services LLC
+client: Brightline Logistics, Inc.
+date: 2026-07-01
+currency: USD
+items:
+  - name: Second-region cluster
+    qty: 1
+    unit_price: 4200
+    total: 4200
+  - name: Cross-region replication
+    qty: 1
+    unit_price: 1100
+    total: 1100
+  - name: Migration services
+    qty: 24
+    unit_price: 165
+    total: 4000          # WRONG on purpose: 24 * 165 = 3960
+pricing:
+  discount_pct: 0
+  tax_pct: 0

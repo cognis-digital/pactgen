@@ -1,0 +1,31 @@
+title: Quarterly Analytics Subscription — Volume Pricing
+vendor: Quantle Data Co.
+client: Hollis & Brand Retail Group
+date: 2026-06-20
+currency: USD
+notes: >
+  Per-seat analytics. Volume discount applied to the whole subtotal.
+  Demonstrates that fractional unit prices and percentage discounts round
+  to the cent the same way every build.
+
+items:
+  - name: Analyst seats
+    description: Full dashboards, exports, alerts
+    qty: 35
+    unit_price: 49.99
+    total: 1749.65
+  - name: Viewer seats
+    description: Read-only dashboards
+    qty: 120
+    unit_price: 12.50
+    total: 1500.00
+  - name: Data connectors
+    description: Per-source managed ETL
+    qty: 7
+    unit_price: 89.00
+    total: 623.00
+
+pricing:
+  discount_pct: 15
+  tax_pct: 7.5
+  total: 3538.63

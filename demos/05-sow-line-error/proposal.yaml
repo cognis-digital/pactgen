@@ -1,0 +1,34 @@
+title: Data Warehouse Modernization — Statement of Work
+vendor: Meridian Analytics Partners LLC
+client: Cascade Health Systems
+date: 2026-06-18
+currency: USD
+notes: >
+  Time-and-materials SOW, billed biweekly. Rates per the MSA dated 2026-01-04.
+  This spec contains a transcription error caught by the math gate.
+
+items:
+  - name: Data architecture
+    description: Target schema, lineage, governance model
+    qty: 80
+    unit_price: 215
+    total: 17200
+  - name: ETL development
+    description: Ingestion + dbt models for 12 sources
+    qty: 240
+    unit_price: 185
+    total: 44400
+  - name: BI enablement
+    description: Semantic layer + 15 certified dashboards
+    qty: 120
+    unit_price: 175
+    total: 24000          # WRONG on purpose: 120 * 175 = 21000
+  - name: Knowledge transfer
+    description: Runbooks, training sessions, handover
+    qty: 24
+    unit_price: 175
+    total: 4200
+
+pricing:
+  discount_pct: 0
+  tax_pct: 0

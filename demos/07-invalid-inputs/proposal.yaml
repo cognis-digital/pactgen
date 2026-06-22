@@ -1,0 +1,29 @@
+title: Event Production Package — DRAFT (do not send)
+vendor: Lumen Stage & AV LLC
+client: Riverside Arts Foundation
+date: 2026-06-19
+currency: USD
+notes: >
+  Draft pulled from a spreadsheet export with several data-entry problems.
+  PACTGEN flags all of them before this ever reaches the client.
+
+items:
+  - name: Stage & rigging
+    description: Truss, deck, install/strike
+    qty: 1
+    unit_price: 5200
+    total: 5200
+  - name: Audio package
+    description: PA, monitors, two engineers
+    qty: 2
+    unit_price: 1800
+    total: 3600
+  - name: Lighting credit
+    description: Returned fixtures (typed as negative qty by mistake)
+    qty: -3
+    unit_price: 140
+
+pricing:
+  discount_pct: 120          # WRONG: discount over 100%
+  tax_pct: 6
+  total: 9000                # WRONG: does not match computed total
