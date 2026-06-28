@@ -21,6 +21,63 @@ pactgen build proposal.yaml -o proposal.html   # rendered doc + math check
 pactgen build proposal.yaml --check            # CI gate: non-zero on bad math
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ pactgen-emit --version
+pactgen 0.3.8
+```
+
+```console
+$ pactgen-emit --help
+usage: pactgen [-h] [--version] [--format {table,json,csv}] COMMAND ...
+
+Generate proposals/SOWs from a YAML scope + pricing table to HTML, with line-item math checks.
+
+positional arguments:
+  COMMAND
+    build               Parse a proposal spec, validate the math, and render
+                        HTML.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json,csv}
+                        Output format for the summary/report: table (default),
+                        json, or csv. Accepted before or after the subcommand.
+
+Example: python -m pactgen build proposal.yaml -o out.html
+```
+
+> Blocks above are real `pactgen` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+    "pact": {
+        "provider": "Example Inc.",
+        "consumer": "PactGen",
+        "version": "1.0"
+    },
+    "findings": [
+        {
+            "id": "1234567890",
+            "title": "Suspicious Network Activity",
+            "description": "Anomalous network traffic detected on port 443",
+            "type": "indicator",
+            "category": "network"
+        }
+    ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `pactgen` turns a YAML proposal/SOW spec into a rendered HTML document while

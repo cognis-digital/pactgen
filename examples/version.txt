@@ -1,0 +1,3 @@
+$ pactgen-emit --version
+
+pactgen 0.3.8

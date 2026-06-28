@@ -1,0 +1,19 @@
+$ pactgen-emit --help
+
+usage: pactgen [-h] [--version] [--format {table,json,csv}] COMMAND ...
+
+Generate proposals/SOWs from a YAML scope + pricing table to HTML, with line-item math checks.
+
+positional arguments:
+  COMMAND
+    build               Parse a proposal spec, validate the math, and render
+                        HTML.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json,csv}
+                        Output format for the summary/report: table (default),
+                        json, or csv. Accepted before or after the subcommand.
+
+Example: python -m pactgen build proposal.yaml -o out.html
